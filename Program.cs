@@ -1,9 +1,16 @@
+using AppMvc.Net.Models;
 using AppMvc.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<AppDBContext>(options => {
+                string connectString = builder.Configuration.GetConnectionString("AppMvcConnectionString");
+                options.UseSqlServer(connectString);
+            });
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddTransient(typeof(ILogger<>), typeof(Logger<>));
