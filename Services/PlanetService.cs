@@ -9,19 +9,19 @@ namespace AppMvc.Services
             Add(new PlanetModel(){
                 Id = 1, 
                 Name = "Mercury",
-                VnName = "Abc",
+                VnName = "Sao thủy",
                 Content = ""
             });
             Add(new PlanetModel(){
                 Id = 2, 
-                Name = "A",
-                VnName = "Abc",
+                Name = "Mars",
+                VnName = "Sao hỏa",
                 Content = ""
             });
             Add(new PlanetModel(){
                 Id = 3, 
-                Name = "B",
-                VnName = "Abc",
+                Name = "Saturn",
+                VnName = "Sao thổ",
                 Content = ""
             });
         }

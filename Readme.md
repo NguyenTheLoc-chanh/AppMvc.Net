@@ -19,3 +19,11 @@
 - ViewData
 - ViewBag
 - TempData
+
+## Areas
+- Là tên dùng để Routing
+- Là cấu trúc thư mục chứa MVC
+- Thiết lập Area cho Controller bằng ```[Area("AreaName")]```
+
+```
+dotnet aspnet-codegenerator area Product

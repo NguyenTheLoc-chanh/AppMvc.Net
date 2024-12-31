@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 builder.Services.AddTransient(typeof(ILogger<>), typeof(Logger<>));
 builder.Services.Configure<RazorViewEngineOptions>(options => {
     // /View/Controller/Action.cshtml
@@ -15,7 +16,6 @@ builder.Services.Configure<RazorViewEngineOptions>(options => {
     // {2} -> Name Area
     options.ViewLocationFormats.Add("/MyView/{1}/{0}" + RazorViewEngine.ViewExtension);
 });
-
 builder.Services.AddSingleton(typeof(ProductService), typeof(ProductService));
 builder.Services.AddSingleton<PlanetService>();
 
@@ -31,11 +31,22 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+//app.AddStatusCodePage(); // Tùy biến response Lỗi: 400 - 599
 
 app.UseRouting();
 
 app.UseAuthorization(); // Xác định quyền truy cập
 
+// app.MapControllers();
+// app.MapDefaultControllerRoute();
+// app.MapAreaControllerRoute();
+
+app.MapAreaControllerRoute(
+    name: "product",
+    areaName: "ProductManage",
+    pattern: "{controller}/{action=Index}/{id?}"
+);
+// Sử dụng cho Controller không có Area
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

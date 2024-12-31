@@ -1,0 +1,9 @@
+@model List<AppMvc.Net.Models.ProductModel>;
+
+<h1>Danh sách sản phẩm</h1>
+<ul>
+    @foreach(var item in Model)
+    {
+        <li>@item.Name</li>
+    }
+</ul>
