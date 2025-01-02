@@ -1,3 +1,5 @@
+using AppMvc.Net.Models.Contacts;
+using AppMvc.Net.Models.Products;
 using Microsoft.EntityFrameworkCore;
 
 namespace AppMvc.Net.Models 
@@ -28,5 +30,7 @@ namespace AppMvc.Net.Models
             // }
 
         }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Product> Products { get; set;}
     }
 }
