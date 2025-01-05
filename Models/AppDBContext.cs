@@ -1,11 +1,14 @@
+using AppMvc.Net.Models;
 using AppMvc.Net.Models.Contacts;
 using AppMvc.Net.Models.Products;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
 
 namespace AppMvc.Net.Models 
 {
     // razorweb.models.MyBlogContext
-    public class AppDBContext : DbContext
+    public class AppDBContext : IdentityDbContext<AppUser>
     {
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
         {
@@ -20,14 +23,14 @@ namespace AppMvc.Net.Models
         {
             base.OnModelCreating(modelBuilder);
             
-            // foreach (var entityType in modelBuilder.Model.GetEntityTypes())
-            // {
-            //     var tableName = entityType.GetTableName();
-            //     if (tableName.StartsWith("AspNet"))
-            //     {
-            //         entityType.SetTableName(tableName.Substring(6));
-            //     }
-            // }
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                var tableName = entityType.GetTableName();
+                if (tableName.StartsWith("AspNet"))
+                {
+                    entityType.SetTableName(tableName.Substring(6));
+                }
+            }
 
         }
         public DbSet<Contact> Contacts { get; set; }
