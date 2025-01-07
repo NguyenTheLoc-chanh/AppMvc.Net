@@ -1,3 +1,5 @@
+using App.Services;
+using AppMvc.Models;
 using AppMvc.Net.Models;
 using AppMvc.Services;
 using Microsoft.AspNetCore.Identity;
@@ -5,6 +7,11 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddOptions();
+            var mailsetting = builder.Configuration.GetSection("MailSettings");
+            builder.Services.Configure<MailSettings>(mailsetting);
+            builder.Services.AddSingleton<IEmailSender, SendMailService>();
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDBContext>(options => {
@@ -82,6 +89,7 @@ builder.Services.Configure<RazorViewEngineOptions>(options => {
 });
 builder.Services.AddSingleton(typeof(ProductService), typeof(ProductService));
 builder.Services.AddSingleton<PlanetService>();
+builder.Services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>();
 
 var app = builder.Build();
 

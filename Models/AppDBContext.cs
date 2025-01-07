@@ -4,6 +4,7 @@ using AppMvc.Net.Models.Products;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
+using AppMvc.Models;
 
 namespace AppMvc.Net.Models 
 {

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
-namespace AppMvc.Net.Models
+namespace AppMvc.Models 
 {
     public class AppUser: IdentityUser 
     {
